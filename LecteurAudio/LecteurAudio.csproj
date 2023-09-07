@@ -5,10 +5,16 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Icone\equalizer_audio.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Icone\casque-de-musique.png" />
+    <None Remove="Icone\equalizer_audio.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Icone\equalizer_audio.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +27,9 @@
 
   <ItemGroup>
     <Resource Include="Icone\casque-de-musique.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icone\equalizer_audio.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
