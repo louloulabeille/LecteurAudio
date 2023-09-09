@@ -32,7 +32,7 @@ namespace LecteurAudio
         private string? _path;
         private string[]? _fichiers;
         private bool _mediaPlayPause = true;    // true = play / false = pause
-        private DispatcherTimer _mediaPlayTimer;
+        private readonly DispatcherTimer _mediaPlayTimer;
 
         public MainWindow()
         {
@@ -53,7 +53,7 @@ namespace LecteurAudio
                 Multiselect = true,
                 Title = "Charger votre musique.",
             };
-            Nullable<bool> result = openFile.ShowDialog();
+            bool? result = openFile.ShowDialog();
 
             if (result == true)
             {
@@ -84,12 +84,12 @@ namespace LecteurAudio
 
             if (ProgressBar_Musique.Value == ProgressBar_Musique.Maximum)
             {
-                Next_Musique(sender, new RoutedEventArgs());
+                Next_Musique(sender??new object(), new RoutedEventArgs());
                 //Stop();
             }
         }
 
-        private void Play (object sender)
+        private void Play ()
         {
             _media.Play();
             ProgressBar_Status.Value = 35;
@@ -99,7 +99,7 @@ namespace LecteurAudio
             _mediaPlayPause = false;
         }
 
-        private void Pause (object sender)
+        private void Pause ()
         {
             _media.Pause();
             ProgressBar_Status.Value = 100;
@@ -131,12 +131,12 @@ namespace LecteurAudio
                     if (List_Musique.SelectedIndex != Array.IndexOf(_fichiers, _path))
                         List_Musique.SelectedIndex = Array.IndexOf(_fichiers, _path);
                     else // en cas de pause on relance juste le mediaplayer
-                        Play(sender);
+                        Play();
                 }
             }
             else
             {
-                Pause(sender);
+                Pause();
             }
         }
 
@@ -161,13 +161,12 @@ namespace LecteurAudio
         private void List_Play_Musique(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count <= 0) return;
-            LecteurMusiqueViewModel? musique = e.AddedItems[0] as LecteurMusiqueViewModel;
-            if (musique != null)
+            if (e.AddedItems[0] is LecteurMusiqueViewModel musique)
             {
                 Stop();
                 _path = musique.Path;
                 _media.Open(new Uri(_path));
-                Play(sender);
+                Play();
             }
         }
 
@@ -175,14 +174,14 @@ namespace LecteurAudio
         {
             if (_fichiers is null ||_path is null) return;
             int index = Array.IndexOf(_fichiers,_path);
-            if (index == -1 || index >= _fichiers.Count()-1) return;
+            if (index == -1 || index >= _fichiers.Length - 1) return;
 
 
             Stop();
             List_Musique.SelectedIndex = index + 1;
             _path = _fichiers[index+1];
             _media.Open(new Uri(_path));
-            Play(sender);
+            Play();
         }
 
         private void Last_Musique(object sender, RoutedEventArgs e)
@@ -195,7 +194,7 @@ namespace LecteurAudio
             List_Musique.SelectedIndex = index - 1;
             _path = _fichiers[index - 1];
             _media.Open(new Uri(_path));
-            Play(sender);
+            Play();
         }
     }
 }

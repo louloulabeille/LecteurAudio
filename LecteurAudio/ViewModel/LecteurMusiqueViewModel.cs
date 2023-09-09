@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace LecteurAudio.ViewModel
 {
     /// <summary>
-    /// Model View de la musique dans au niveau du lecteur
+    /// Model View de la liste de musique dans le lecteur
     /// </summary>
     public class LecteurMusiqueViewModel //: INotifyPropertyChanged
     {
