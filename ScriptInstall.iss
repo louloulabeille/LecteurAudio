@@ -3,7 +3,7 @@
 
 #define MyAppName "AudioLoulou"
 #define MyAppVersion "1.0.0"
-#define MyAppPublisher "NaN"
+#define MyAppPublisher "Loulou Compagny"
 #define MyAppExeName "LecteurAudio.exe"
 #define MyAppAssocName MyAppName + ""
 #define MyAppAssocExt ".myp"
@@ -12,7 +12,7 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{A6491FB1-5C2A-4340-9CF9-7656A9C85966}
+AppId={{311137D0-9226-48FF-A3A5-BA0E82F4DE55}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -28,6 +28,7 @@ SolidCompression=yes
 WizardStyle=modern
 
 [Languages]
+Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 
 [Tasks]
@@ -35,6 +36,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "C:\Users\louloulabeille\source\repos\LecteurAudio\LecteurAudio\bin\Release\net7.0-windows\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\louloulabeille\source\repos\LecteurAudio\LecteurAudio\bin\Release\net7.0-windows\GestionProcess.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\louloulabeille\source\repos\LecteurAudio\LecteurAudio\bin\Release\net7.0-windows\GestionProcess.pdb"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\louloulabeille\source\repos\LecteurAudio\LecteurAudio\bin\Release\net7.0-windows\LecteurAudio.deps.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\louloulabeille\source\repos\LecteurAudio\LecteurAudio\bin\Release\net7.0-windows\LecteurAudio.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\louloulabeille\source\repos\LecteurAudio\LecteurAudio\bin\Release\net7.0-windows\LecteurAudio.pdb"; DestDir: "{app}"; Flags: ignoreversion
@@ -56,7 +59,4 @@ Root: HKA; Subkey: "Software\Classes\Applications\{#MyAppExeName}\SupportedTypes
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
-
-[Run]
-Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
