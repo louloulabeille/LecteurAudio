@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GestionProcess\GestionProcess.csproj" />
     <ProjectReference Include="..\MusiqueBOL\MusiqueBOL.csproj" />
   </ItemGroup>
 

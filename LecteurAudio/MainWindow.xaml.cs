@@ -1,9 +1,11 @@
-﻿using LecteurAudio.ViewModel;
+﻿using GestionProcess;
+using LecteurAudio.ViewModel;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using MusiqueBOL;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security.Policy;
@@ -42,6 +44,8 @@ namespace LecteurAudio
 
             _mediaPlayTimer = new() { Interval = TimeSpan.FromSeconds(0.01) };
             _mediaPlayTimer.Tick += ThreadProgressMusique;
+
+            ProcessAppli.ProcessStarted(Process.GetCurrentProcess());
 
         }
 
